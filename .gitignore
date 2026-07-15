@@ -1,19 +1,22 @@
-# Environment
-.env
-.env.production
-server/.env
-
-# Python
+# Python cache
 __pycache__/
 *.pyc
-server/db.sqlite3
-server/staticfiles/
-server/venv/
+*.pyo
+*.pyd
 
-# Node
+# Environment
+.env
+.env.*
+server/.env
+
+# Database
+server/db.sqlite3
+
+# Static/build files
+server/staticfiles/
 node_modules/
 dist/
 
-# IDE
-.vscode/
-.idea/
+# Virtual environment
+venv/
+server/venv/
