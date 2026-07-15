@@ -1,7 +1,11 @@
 import axios from 'axios';
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+
 const apiClient = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api',
+  baseURL: `${API_BASE_URL}/api`,
 });
+
 apiClient.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('accessToken');
@@ -14,6 +18,7 @@ apiClient.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -26,4 +31,5 @@ apiClient.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
 export default apiClient;

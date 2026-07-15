@@ -1,27 +1,19 @@
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-.config/
+# Environment
 .env
+.env.production
+server/.env
 
-db.sqlite3
+# Python
+__pycache__/
+*.pyc
+server/db.sqlite3
+server/staticfiles/
+server/venv/
+
+# Node
+node_modules/
+dist/
+
+# IDE
+.vscode/
+.idea/

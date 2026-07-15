@@ -70,24 +70,28 @@ class YoutubeSearchView(APIView):
             )
 
 class ResearchPaperView(APIView):
-    permission_classes=[IsAuthenticated]
-    def get(self,request):
-        query=request.query_params.get('q',None)
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        query = request.query_params.get('q', None)
         if not query:
-            return Response({"error":"A query parameter is required."},status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": "A query parameter is required."}, status=status.HTTP_400_BAD_REQUEST)
         try:
             search = arxiv.Search(
                 query=query,
                 max_results=10,
                 sort_by=arxiv.SortCriterion.Relevance
             )
+            
+            client = arxiv.Client()
             results = []
-            for result in search.results():
+            
+            for result in client.results(search):
                 results.append({
                     'title': result.title,
                     'url': result.entry_id,
                     'pdf_url': result.pdf_url,
-                    'anippet': result.summary,
+                    'snippet': result.summary,
                     'authors': [author.name for author in result.authors],
                     'year': result.published.year,
                 })
